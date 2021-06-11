@@ -14,19 +14,13 @@ import java.util.Date;
 public class Team {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 3.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer teamId;
-
     private String teamName;
-
     private String teamIcon;
-
     private String teamPublicYn;
-
     private String teamIntro;
-
     private String teamArea;
-
     private Date   teamRegDate;
 
     @Builder
@@ -36,7 +30,8 @@ public class Team {
                 String teamPublicYn,
                 String teamIntro,
                 String teamArea,
-                Date   teamRegDate) {
+                Date   teamRegDate
+                ) {
         this.teamId         = teamId;
         this.teamName       = teamName;
         this.teamIcon       = teamIcon;

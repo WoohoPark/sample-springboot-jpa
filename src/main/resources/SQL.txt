@@ -23,8 +23,6 @@ Yes 	: 00
 No		: 99
 
 type	: req
-스카웃요청	: SC
-팀가입요청	: TI
 팀매칭요청	: TM
 
 User
@@ -89,27 +87,32 @@ MEMBER
 팀아이디		: teamId
 팀원			: userId
 팀장여부		: leader
-부팀장여부		: subLeader
+부팀장여부	: subLeader
+팀원여부		: memberYn
 팀가입일		: joinDate
 
 CREATE TABLE `tb_member` (
 	`teamId` INT(11) NOT NULL,
 	`userId` INT(11) NOT NULL,
-	`leader` INT(11) NOT NULL,
-	`subLeader` INT(11) NOT NULL,
+	`leaderYn` INT(11) NOT NULL,
+	`subLeaderYn` INT(11) NOT NULL,
+	`memberYn` INT(11) NOT NULL,
 	`joinDate` DATETIME NOT NULL,
+	`joinMemo` VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`reqDate` DATETIME NULL DEFAULT NULL,
 	PRIMARY KEY (`teamId`, `userId`) USING BTREE
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
 
+
 Match
 매치아이디		: matchId
-매치날짜		: matchDay
-매치시간		: matchTime
-매칭시도		: matchTry
-매칭여부		: matchYn
+매치날짜		    : matchDay
+매치시간		    : matchTime
+매칭시도		    : matchTry
+매칭여부		    : matchYn
 매칭Home팀		: matchHomeId
 매칭Away팀		: matchAwayId
 
@@ -125,6 +128,23 @@ CREATE TABLE `tb_match` (
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
+
+tb_req
+
+매칭 요청 테이블
+
+CREATE TABLE `tb_req` (
+	`matchId` INT(11) NULL DEFAULT NULL,
+	`reqTeamId` INT(11) NULL DEFAULT NULL,
+	`memo` VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`regDate` DATETIME NULL DEFAULT NULL,
+	`type` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8_general_ci'
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+
+
 
 Score
 매치번호	: matchId
@@ -144,26 +164,8 @@ COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
 
-tb_req
+Review
 
-팀ID		: teamId
-유저ID	: userId
-메모		: memo
-신청기간	: regDate
-타입		: type
-
-CREATE TABLE `tb_req` (
-	`teamId` INT(11) NULL DEFAULT NULL,
-	`userId` INT(11) NULL DEFAULT NULL,
-	`memo` VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`regDate` DATETIME NULL DEFAULT NULL,
-	`type` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8_general_ci'
-)
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB
-;
-
-tb_review
 CREATE TABLE `tb_review` (
 	`teamId` INT(11) NULL DEFAULT NULL,
 	`userId` INT(11) NULL DEFAULT NULL,

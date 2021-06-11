@@ -16,7 +16,7 @@ public class ReviewController {
     /*
     리뷰 등록
      */
-    @GetMapping("/insert")
+    @PostMapping("/insert")
     public Integer reviewInsert(@RequestBody ReviewVO vo) throws Exception {
         return reviewService.save(vo);
     }

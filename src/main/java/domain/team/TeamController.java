@@ -36,23 +36,5 @@ public class TeamController {
     public TeamVO teamInfo(int teamId) throws Exception {
         return teamService.getInfo(teamId);
     }
-/*
 
-
-@GetMapping("/review/insert")
-public List<TeamVO> teamReviewInsert() throws Exception {
-    return boardService.getList();
-}
-
-    @GetMapping("/review/delete")
-    public List<TeamVO> teamReviewDelete() throws Exception {
-        return boardService.getList();
-    }
-
-    @GetMapping("/review/update")
-    public List<TeamVO> teamReviewUpdate() throws Exception {
-        return boardService.getList();
-    }
-
- */
 }
